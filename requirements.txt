@@ -1,4 +1,4 @@
-#-e git+git://github.com/avidale/tgalice#egg=tgalice
-tgalice==0.1.2
+-e git+git://github.com/avidale/tgalice#egg=tgalice
+#tgalice==0.1.2
 pymongo
 mongomock
