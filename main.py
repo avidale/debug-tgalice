@@ -4,6 +4,10 @@ import mongomock
 from pymongo import MongoClient
 
 
+import logging
+
+logging.basicConfig(level=logging.INFO)
+
 TEXT_HELP = (
     'Привет! Я бот, который умеет работать и в Телеграме и в Алисе.'
     '\nЯ не умею делать примерно ничего, но могу с вами поздороваться.'
@@ -33,7 +37,9 @@ if __name__ == '__main__':
     )
     connector = tgalice.dialog_connector.DialogConnector(
         dialog_manager=manager,
-        storage=tgalice.session_storage.MongoBasedStorage(mongo_db, collection_name='sessions'),
+        storage=tgalice.session_storage.MongoBasedStorage(database=mongo_db, collection_name='sessions'),
+        log_storage=tgalice.storage.message_logging.MongoMessageLogger(database=mongo_db, detect_pings=True)
+        # log_storage=tgalice.storage.message_logging.BaseMessageLogger()
     )
-    server = tgalice.flask_server.FlaskServer(connector=connector, collection_for_logs=mongo_logs)
+    server = tgalice.flask_server.FlaskServer(connector=connector)
     server.parse_args_and_run()
