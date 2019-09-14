@@ -1,3 +1,4 @@
 tgalice==0.2.0
 pymongo
 mongomock
+navec
