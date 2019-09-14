@@ -7,7 +7,7 @@ from navec import Navec
 
 import logging
 
-import prerlease
+import prerelease
 
 logging.basicConfig(level=logging.INFO)
 
@@ -29,8 +29,8 @@ if __name__ == '__main__':
         mongo_db = mongo_client.db
     mongo_logs = mongo_db.get_collection('message_logs')
 
-    prerlease.download_if_not_exists(prerlease.navec_url, prerlease.navec_file)
-    w2v = Navec.load(prerlease.navec_file)
+    prerelease.download_if_not_exists(prerelease.navec_url, prerelease.navec_file)
+    w2v = Navec.load(prerelease.navec_file)
 
     manager = tgalice.dialog_manager.CascadeDialogManager(
         tgalice.dialog_manager.FAQDialogManager('faq.yaml', matcher=tgalice.nlu.matchers.W2VMatcher(w2v=w2v)),
