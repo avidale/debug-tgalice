@@ -3,6 +3,7 @@ import tgalice
 import mongomock
 from pymongo import MongoClient
 
+from navec import Navec
 
 import logging
 
@@ -26,8 +27,10 @@ if __name__ == '__main__':
         mongo_db = mongo_client.db
     mongo_logs = mongo_db.get_collection('message_logs')
 
+    w2v = Navec.load('navec_hudlit_v1_12B_500K_300d_100q.tar')
+
     manager = tgalice.dialog_manager.CascadeDialogManager(
-        tgalice.dialog_manager.FAQDialogManager('faq.yaml', matcher='cosine'),
+        tgalice.dialog_manager.FAQDialogManager('faq.yaml', matcher=tgalice.nlu.matchers.W2VMatcher(w2v=w2v)),
         tgalice.dialog_manager.GreetAndHelpDialogManager(
             greeting_message=TEXT_HELP,
             help_message=TEXT_HELP,
