@@ -44,5 +44,7 @@ connector = tgalice.dialog_connector.DialogConnector(
 )
 server = tgalice.flask_server.FlaskServer(connector=connector)
 
+app = server.app
+
 if __name__ == '__main__':
     server.parse_args_and_run()
