@@ -1,4 +1,4 @@
-tgalice==0.2.1
+tgalice>=0.2.13
 pymongo
 mongomock
 navec

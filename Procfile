@@ -1,2 +1,2 @@
-web: python main.py
-release: python prerelease.py
+web: python main_natasha.py
+# release: python prerelease.py
