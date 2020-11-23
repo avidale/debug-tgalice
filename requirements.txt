@@ -3,3 +3,4 @@ pymongo
 mongomock
 navec
 natasha
+gunicorn
